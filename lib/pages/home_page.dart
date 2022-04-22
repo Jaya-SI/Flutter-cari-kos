@@ -130,14 +130,16 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 30,
                     ),
-                    RecomendedCard(Recomended(
-                        id: 3,
-                        name: 'Kuretakeso Hott',
-                        imageUrl: 'assets/images/space3.png',
-                        price: 52,
-                        city: 'Bumi Mas',
-                        coutry: 'Banjarmasin',
-                        ratting: 3)),
+                    RecomendedCard(
+                      Recomended(
+                          id: 3,
+                          name: 'Kuretakeso Hott',
+                          imageUrl: 'assets/images/space3.png',
+                          price: 52,
+                          city: 'Bumi Mas',
+                          coutry: 'Banjarmasin',
+                          ratting: 3),
+                    ),
                     SizedBox(
                       height: 30,
                     ),

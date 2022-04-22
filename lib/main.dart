@@ -1,3 +1,4 @@
+import 'package:cari_kos/pages/detail_page.dart';
 import 'package:cari_kos/pages/home_page.dart';
 import 'package:cari_kos/pages/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashPage(),
         '/home': (context) => HomePage(),
+        '/detail':(context) => DetailPage(),
       },
     );
   }

@@ -2,7 +2,7 @@ class Recomended {
   int id;
   String name;
   String imageUrl;
-  double price;
+  int price;
   String city;
   String coutry;
   int ratting;
