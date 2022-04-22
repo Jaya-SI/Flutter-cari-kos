@@ -1,5 +1,6 @@
 import 'package:cari_kos/models/recomended.dart';
 import 'package:cari_kos/widgets/facility_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,6 +8,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffFFFFFF),
       body: SafeArea(
         child: Stack(
           children: [
@@ -15,27 +17,6 @@ class DetailPage extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 350,
               fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24, top: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Image.asset(
-                      'assets/images/btn_back.png',
-                      width: 40,
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/images/btn_wishlist.png',
-                    width: 40,
-                  ),
-                ],
-              ),
             ),
             ListView(
               children: [
@@ -48,6 +29,7 @@ class DetailPage extends StatelessWidget {
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(20),
                     ),
+                    color: Color(0xffFFFFFF),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +46,7 @@ class DetailPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Kuretakeso Hott',
+                                  'Kost Jaya',
                                   style: GoogleFonts.poppins(
                                     fontSize: 22,
                                     fontWeight: FontWeight.w500,
@@ -165,12 +147,143 @@ class DetailPage extends StatelessWidget {
                             )
                           ],
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          'Photo',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Container(
+                        height: 88,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            SizedBox(
+                              width: 24,
+                            ),
+                            Image.asset(
+                              'assets/images/photo1.png',
+                              width: 110,
+                              height: 88,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: 18,
+                            ),
+                            Image.asset(
+                              'assets/images/photo2.png',
+                              width: 110,
+                              height: 88,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: 18,
+                            ),
+                            Image.asset(
+                              'assets/images/photo3.png',
+                              width: 110,
+                              height: 88,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: 24,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          'Location',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Desa Sungai Sahurai Kec Rantau Badauh \nBatola',
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: Color(0xff7A7E86),
+                              ),
+                            ),
+                            Image.asset(
+                              'assets/images/btn_map.png',
+                              width: 40,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 24),
+                        width: MediaQuery.of(context).size.width - (2 * 24),
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Color(0xff5843BE),
+                          borderRadius: BorderRadius.circular(17),
+                        ),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Book Now',
+                            style: GoogleFonts.poppins(
+                              color: Color(0xffFFFFFF),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
                     ],
                   ),
                 )
               ],
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 24, right: 24, top: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Image.asset(
+                      'assets/images/btn_back.png',
+                      width: 40,
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/images/btn_wishlist.png',
+                    width: 40,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
