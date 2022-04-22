@@ -3,10 +3,20 @@ import 'package:cari_kos/widgets/facility_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
+  final Uri _url = Uri.parse('https://goo.gl/maps/fLHVZboXkPPcNUNz6');
   @override
   Widget build(BuildContext context) {
+    _launchUrl(url) async {
+      if (!await launchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        throw (url);
+      }
+    }
+
     return Scaffold(
       backgroundColor: Color(0xffFFFFFF),
       body: SafeArea(
@@ -225,9 +235,14 @@ class DetailPage extends StatelessWidget {
                                 color: Color(0xff7A7E86),
                               ),
                             ),
-                            Image.asset(
-                              'assets/images/btn_map.png',
-                              width: 40,
+                            InkWell(
+                              onTap: () {
+                                launchUrl(_url);
+                              },
+                              child: Image.asset(
+                                'assets/images/btn_map.png',
+                                width: 40,
+                              ),
                             ),
                           ],
                         ),
