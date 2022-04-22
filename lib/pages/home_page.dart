@@ -1,3 +1,5 @@
+import 'package:cari_kos/models/city.dart';
+import 'package:cari_kos/widgets/city_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +11,7 @@ class HomePage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
         children: [
+          // NOTE: TITLE / HEADER
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -30,8 +33,68 @@ class HomePage extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                 ),
               ),
+              SizedBox(
+                height: 30,
+              ),
+              // NOTE : KOTA POPULAR
+              Text(
+                'Kota Populer',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Container(
+                height: 150,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    CityCard(
+                      City(
+                          id: 1,
+                          name: 'Banjarmasin',
+                          imageUrl: 'assets/images/city1.png',
+                          popular: false),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    CityCard(
+                      City(
+                        id: 1,
+                        name: 'Banjarbaru',
+                        imageUrl: 'assets/images/city2.png',
+                        popular: true,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    CityCard(
+                      City(
+                        id: 1,
+                        name: 'Barito Kuala',
+                        imageUrl: 'assets/images/city3.png',
+                        popular: false,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              // NOTE RECOMENDED
+              Text(
+                'Recommended Kost',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                ),
+              ),
             ],
-          )
+          ),
         ],
       ),
     ));
