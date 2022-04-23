@@ -25,9 +25,7 @@ class RecomendedCard extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  Image.asset(
-                    recomended.imageUrl,
-                  ),
+                  Image.network('${recomended.image_url}'),
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(
@@ -70,7 +68,7 @@ class RecomendedCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                recomended.name,
+                '${recomended.name}',
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -103,7 +101,7 @@ class RecomendedCard extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                '${recomended.city}, ${recomended.coutry}',
+                '${recomended.city}, ${recomended.country}',
                 style: GoogleFonts.poppins(
                   color: Color(0xff7A7E86),
                   fontSize: 14,

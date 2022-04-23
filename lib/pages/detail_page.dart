@@ -1,4 +1,3 @@
-import 'package:cari_kos/models/data.dart';
 import 'package:cari_kos/models/recomended.dart';
 import 'package:cari_kos/pages/error_page.dart';
 import 'package:cari_kos/widgets/facility_item.dart';

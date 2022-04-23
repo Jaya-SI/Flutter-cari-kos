@@ -1,16 +1,20 @@
 import 'package:cari_kos/models/city.dart';
 import 'package:cari_kos/models/recomended.dart';
 import 'package:cari_kos/models/tips.dart';
+import 'package:cari_kos/providers/recomended_provider.dart';
 import 'package:cari_kos/widgets/bottom_navbar_item.dart';
 import 'package:cari_kos/widgets/city_card.dart';
 import 'package:cari_kos/widgets/recomended_card.dart';
 import 'package:cari_kos/widgets/tips_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var recomendedProvider = Provider.of<RecomendedProvider>(context);
+
     return SafeArea(
       bottom: false,
       child: Scaffold(
@@ -102,49 +106,23 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                Column(
-                  children: [
-                    RecomendedCard(
-                      Recomended(
-                          id: 1,
-                          name: 'Kuretakeso Hott',
-                          imageUrl: 'assets/images/space1.png',
-                          price: 52,
-                          city: 'Sahurai',
-                          coutry: 'Batola',
-                          ratting: 4),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    RecomendedCard(
-                      Recomended(
-                          id: 2,
-                          name: 'Roemah Nenek',
-                          imageUrl: 'assets/images/space2.png',
-                          price: 52,
-                          city: 'BCB',
-                          coutry: 'Banjarbaru',
-                          ratting: 5),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    RecomendedCard(
-                      Recomended(
-                          id: 3,
-                          name: 'Kuretakeso Hott',
-                          imageUrl: 'assets/images/space3.png',
-                          price: 52,
-                          city: 'Bumi Mas',
-                          coutry: 'Banjarmasin',
-                          ratting: 3),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                  ],
+
+                FutureBuilder(
+                  future: recomendedProvider.getRecomended(),
+                  builder: (contex, snapshot) {
+                    if (snapshot.hasData) {
+                      List<Recomended> data = snapshot.data as List<Recomended>;
+                      return Column(
+                        children:
+                            data.map((item) => RecomendedCard(item)).toList(),
+                      );
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
+
                 Text(
                   'Tips & Guidance',
                   style: GoogleFonts.poppins(
