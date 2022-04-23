@@ -7,6 +7,7 @@ class Recomended {
   String coutry;
   int ratting;
 
+
   Recomended({
     required this.id,
     required this.name,

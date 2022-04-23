@@ -1,19 +1,22 @@
 import 'package:cari_kos/models/recomended.dart';
+import 'package:cari_kos/pages/error_page.dart';
 import 'package:cari_kos/widgets/facility_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class DetailPage extends StatelessWidget {
-  final Uri _url = Uri.parse('https://goo.gl/maps/fLHVZboXkPPcNUNz6');
+  // final Uri _url = Uri.parse('https://goo.gl/maps/fLHVZboXkPPcNUNz6');
+  // final Uri _urltel = Uri.parse('tel:+6285651923925');
   @override
   Widget build(BuildContext context) {
-    _launchUrl(url) async {
-      if (!await launchUrl(url)) {
-        await launchUrl(url);
+    launcUrl(String url) async {
+      if (await canLaunchUrl(Uri.parse(url))) {
+        launcUrl(url);
       } else {
-        throw (url);
+        Navigator.pushNamed(context, '/error-page');
       }
     }
 
@@ -237,7 +240,8 @@ class DetailPage extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                launchUrl(_url);
+                                launchUrl(Uri.parse(
+                                    'https://goo.gl/maps/a4mRU6ZGCycT9a849'));
                               },
                               child: Image.asset(
                                 'assets/images/btn_map.png',
@@ -259,7 +263,9 @@ class DetailPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(17),
                         ),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            launchUrl(Uri.parse('tel:+6285351923925'));
+                          },
                           child: Text(
                             'Book Now',
                             style: GoogleFonts.poppins(
