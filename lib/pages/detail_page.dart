@@ -1,3 +1,4 @@
+import 'package:cari_kos/models/data.dart';
 import 'package:cari_kos/models/recomended.dart';
 import 'package:cari_kos/pages/error_page.dart';
 import 'package:cari_kos/widgets/facility_item.dart';
@@ -5,16 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class DetailPage extends StatelessWidget {
-  // final Uri _url = Uri.parse('https://goo.gl/maps/fLHVZboXkPPcNUNz6');
-  // final Uri _urltel = Uri.parse('tel:+6285651923925');
   @override
   Widget build(BuildContext context) {
-    launcUrl(String url) async {
-      if (await canLaunchUrl(Uri.parse(url))) {
-        launcUrl(url);
+    klaunchUrl(final String _url) async {
+      if (await canLaunchUrl(Uri.parse(_url))) {
+        await launchUrl(Uri.parse(_url));
       } else {
         Navigator.pushNamed(context, '/error-page');
       }
@@ -238,10 +236,10 @@ class DetailPage extends StatelessWidget {
                                 color: Color(0xff7A7E86),
                               ),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
-                                launchUrl(Uri.parse(
-                                    'https://goo.gl/maps/a4mRU6ZGCycT9a849'));
+                                klaunchUrl(
+                                    'https://goo.gl/maps/KV4uR95dMuV1DGE87');
                               },
                               child: Image.asset(
                                 'assets/images/btn_map.png',
@@ -264,7 +262,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            launchUrl(Uri.parse('tel:+6285351923925'));
+                            klaunchUrl('tel:+6285651923925');
                           },
                           child: Text(
                             'Book Now',
