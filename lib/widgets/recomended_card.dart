@@ -1,3 +1,4 @@
+import 'package:cari_kos/pages/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,7 +12,12 @@ class RecomendedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/detail');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(recomended),
+          ),
+        );
       },
       child: Row(
         children: [
@@ -25,7 +31,12 @@ class RecomendedCard extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  Image.network('${recomended.image_url}'),
+                  Image.network(
+                    '${recomended.image_url}',
+                    width: 130,
+                    height: 110,
+                    fit: BoxFit.cover,
+                  ),
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(
@@ -46,7 +57,7 @@ class RecomendedCard extends StatelessWidget {
                             height: 18,
                           ),
                           Text(
-                            '${recomended.ratting}/5',
+                            '${recomended.rating}/5',
                             style: GoogleFonts.poppins(
                               fontSize: 13,
                               fontWeight: FontWeight.w500,

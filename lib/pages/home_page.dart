@@ -112,10 +112,15 @@ class HomePage extends StatelessWidget {
                   builder: (contex, snapshot) {
                     if (snapshot.hasData) {
                       List<Recomended> data = snapshot.data as List<Recomended>;
+                      int index = 0;
                       return Column(
-                        children:
-                            data.map((item) => RecomendedCard(item)).toList(),
-                      );
+                          children: data.map((item) {
+                        index++;
+                        return Container(
+                          margin: EdgeInsets.only(top: index == 1 ? 0 : 30),
+                          child: RecomendedCard(item),
+                        );
+                      }).toList());
                     }
                     return Center(
                       child: CircularProgressIndicator(),
@@ -123,6 +128,9 @@ class HomePage extends StatelessWidget {
                   },
                 ),
 
+                SizedBox(
+                  height: 30,
+                ),
                 Text(
                   'Tips & Guidance',
                   style: GoogleFonts.poppins(

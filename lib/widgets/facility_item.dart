@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class FacilityItem extends StatelessWidget {
   final String name;
   final String imageUrl;
-  final int jumlah;
+  final int? jumlah;
 
   FacilityItem({
     required this.name,

@@ -5,7 +5,7 @@ class Recomended {
   int? price;
   String? city;
   String? country;
-  int? ratting;
+  int? rating;
   String? address;
   String? phone;
   String? map_url;
@@ -21,7 +21,7 @@ class Recomended {
     this.price,
     this.city,
     this.country,
-    this.ratting,
+    this.rating,
     this.address,
     this.phone,
     this.map_url,
@@ -38,7 +38,7 @@ class Recomended {
     price = json['price'];
     city = json['city'];
     country = json['country'];
-    ratting = json['ratting'];
+    rating = json['rating'];
     address = json['address'];
     phone = json['phone'];
     map_url = json['map_url'];

@@ -1,12 +1,17 @@
 import 'package:cari_kos/models/recomended.dart';
 import 'package:cari_kos/pages/error_page.dart';
 import 'package:cari_kos/widgets/facility_item.dart';
+import 'package:cari_kos/widgets/ratting_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
+  final Recomended recomendeds;
+
+  DetailPage(this.recomendeds);
+
   @override
   Widget build(BuildContext context) {
     klaunchUrl(final String _url) async {
@@ -22,8 +27,8 @@ class DetailPage extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Image.asset(
-              'assets/images/detail_pic.png',
+            Image.network(
+              '${recomendeds.image_url}',
               width: MediaQuery.of(context).size.width,
               height: 350,
               fit: BoxFit.cover,
@@ -47,8 +52,8 @@ class DetailPage extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 24),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -56,7 +61,7 @@ class DetailPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Kost Jaya',
+                                  '${recomendeds.name}',
                                   style: GoogleFonts.poppins(
                                     fontSize: 22,
                                     fontWeight: FontWeight.w500,
@@ -65,7 +70,7 @@ class DetailPage extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      '\$52',
+                                      '\$${recomendeds.price}',
                                       style: GoogleFonts.poppins(
                                           color: Color(0xff5843BE),
                                           fontSize: 16,
@@ -84,41 +89,15 @@ class DetailPage extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/Icon_star.png',
-                                  width: 15,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/Icon_star.png',
-                                  width: 15,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/Icon_star.png',
-                                  width: 15,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/Icon_star.png',
-                                  width: 15,
-                                ),
-                                SizedBox(
-                                  width: 2,
-                                ),
-                                Image.asset(
-                                  'assets/images/Icon_star.png',
-                                  color: Color(0xff989BA1),
-                                  width: 15,
-                                ),
-                              ],
+                              children: [1, 2, 3, 4, 5].map((index) {
+                                return Container(
+                                  margin: EdgeInsets.only(right: 2),
+                                  child: RattingItem(
+                                    index: index,
+                                    ratting: recomendeds.rating,
+                                  ),
+                                );
+                              }).toList(),
                             )
                           ],
                         ),
@@ -143,15 +122,15 @@ class DetailPage extends StatelessWidget {
                               children: [
                                 FacilityItem(
                                     imageUrl: 'assets/images/icon_kitchen.png',
-                                    jumlah: 2,
+                                    jumlah: recomendeds.number_of_kitchens,
                                     name: 'kitchen'),
                                 FacilityItem(
                                     imageUrl: 'assets/images/icon_badroom.png',
-                                    jumlah: 3,
+                                    jumlah: recomendeds.number_of_bedrooms,
                                     name: 'Badroom'),
                                 FacilityItem(
                                     imageUrl: 'assets/images/icon_lemari.png',
-                                    jumlah: 3,
+                                    jumlah: recomendeds.number_of_cupboards,
                                     name: 'Big Lemari'),
                               ],
                             )
@@ -173,40 +152,21 @@ class DetailPage extends StatelessWidget {
                       Container(
                         height: 88,
                         child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            SizedBox(
-                              width: 24,
-                            ),
-                            Image.asset(
-                              'assets/images/photo1.png',
-                              width: 110,
-                              height: 88,
-                              fit: BoxFit.cover,
-                            ),
-                            SizedBox(
-                              width: 18,
-                            ),
-                            Image.asset(
-                              'assets/images/photo2.png',
-                              width: 110,
-                              height: 88,
-                              fit: BoxFit.cover,
-                            ),
-                            SizedBox(
-                              width: 18,
-                            ),
-                            Image.asset(
-                              'assets/images/photo3.png',
-                              width: 110,
-                              height: 88,
-                              fit: BoxFit.cover,
-                            ),
-                            SizedBox(
-                              width: 24,
-                            )
-                          ],
-                        ),
+                            scrollDirection: Axis.horizontal,
+                            children: recomendeds.photos!.map((item) {
+                              return Container(
+                                margin: EdgeInsets.only(left: 24),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Image.network(
+                                    item,
+                                    width: 110,
+                                    height: 88,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            }).toList()),
                       ),
                       SizedBox(
                         height: 30,
@@ -229,7 +189,7 @@ class DetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Desa Sungai Sahurai Kec Rantau Badauh \nBatola',
+                              '${recomendeds.address} \n${recomendeds.city}',
                               style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 color: Color(0xff7A7E86),
@@ -237,8 +197,7 @@ class DetailPage extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                klaunchUrl(
-                                    'https://goo.gl/maps/KV4uR95dMuV1DGE87');
+                                klaunchUrl('${recomendeds.map_url}');
                               },
                               child: Image.asset(
                                 'assets/images/btn_map.png',
@@ -261,7 +220,7 @@ class DetailPage extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            klaunchUrl('tel:+6285651923925');
+                            klaunchUrl('tel:${recomendeds.phone}');
                           },
                           child: Text(
                             'Book Now',
